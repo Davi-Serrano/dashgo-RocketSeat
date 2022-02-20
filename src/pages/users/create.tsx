@@ -1,4 +1,6 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Th, Thead, Tr, Text, Divider, VStack, SimpleGrid, HStack,  } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Divider, VStack, SimpleGrid, HStack,  } from "@chakra-ui/react"
+
+import Link from "next/link";
 
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header"
@@ -31,8 +33,10 @@ export default function UserList() {
 
                 <Flex mt="8" justify="flex-end">
                     <HStack spacing="4">
+                    <Link href={"/users"} passHref>
                         <Button colorScheme="whiteAlpha" >Cancelar</Button>
-                        <Button colorScheme="pink" >Salvar</Button>
+                    </Link>    
+                        <Button as="a" colorScheme="pink" >Salvar</Button>
                     </HStack>
                 </Flex>
 
