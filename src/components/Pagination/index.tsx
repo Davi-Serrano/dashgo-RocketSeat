@@ -51,28 +51,28 @@ export function Pagination({
 
                 {currentPage >  (1 + siblingsCount) && (
                     <>
-                        <PaginationItem numberPage={1} />
+                        <PaginationItem onPageChange={onPageChange} numberPage={1} />
                         {currentPage + (2 + siblingsCount ) && 
                         <Text color="gray.300" w="8" textAlign="center">...</Text>}
                     </>
                 )}
 
                 {previousPage.length > 0 && previousPage.map(page =>{
-                    return <PaginationItem key={page} numberPage={page} />
+                    return <PaginationItem onPageChange={onPageChange} key={page} numberPage={page} />
                 })}
 
-                <PaginationItem isCurrent numberPage={currentPage} /> 
+                <PaginationItem onPageChange={onPageChange} isCurrent numberPage={currentPage} /> 
                 
                 {nextPages.length > 0 && nextPages.map(page =>{
-                    return <PaginationItem key={page} numberPage={page} />
+                    return <PaginationItem onPageChange={onPageChange} key={page} numberPage={page} />
                 })}
 
                 {currentPage + siblingsCount <  lastPage && (
                     <>
                         {(currentPage + 1 + siblingsCount) < lastPage && ( 
-                            <Text color="gray.300" w="8" textAlign="center">...</Text>
+                            <Text color="gray.300" w="8" alignContent="center">...</Text>
                         )}
-                        <PaginationItem numberPage={lastPage} />
+                        <PaginationItem onPageChange={onPageChange} numberPage={lastPage} />
                     </>
                 )}
             </Stack>
