@@ -7,12 +7,11 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { SidebarDrawerProvider } from '../context/SidebarDrawer'
 import { makeServer } from '../services/mirage'
+import { queryClient } from '../services/queryClient';
 
 if (process.env.NODE_ENV=== 'development' ){
       makeServer()
 }
-
-const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

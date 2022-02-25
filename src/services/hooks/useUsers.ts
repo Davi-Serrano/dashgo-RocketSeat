@@ -2,7 +2,7 @@ import { useQuery } from "react-query"
 import { api } from "../axios/api"
 
 type User = {
-    id: string,
+    id: number,
     name: string;
     email: string;
     createdAt: string;
@@ -45,6 +45,6 @@ export async function getUsers(page: number): Promise<getUsersResponse> {
 
 export function useUsers(page: number){
     return useQuery(['users', page], ()=>getUsers(page),{
-        staleTime: 1000 * 5
+        staleTime: 1000 * 60 * 10  // 10 minutes
     })
 }
