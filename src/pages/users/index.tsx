@@ -9,7 +9,7 @@ import { Pagination } from "../../components/Pagination";
 
 export default function UserList() {
 
-    const {data, isLoading, error } = useQuery('users', async ()=>{
+    const { data, isLoading, error } = useQuery('users', async ()=>{
         
         const response = await fetch('http://localhost:3000/api/users')
             const data = await  response.json()
@@ -21,7 +21,6 @@ export default function UserList() {
         base: false,
         lg: true,
     })
-    
     
     return(
         <Box>
@@ -69,25 +68,28 @@ export default function UserList() {
                                     </Thead>
 
                                     <Tbody>
-                                        <Tr>
-                                            <Td px="6">
-                                                <Checkbox  colorScheme="pink" > </Checkbox>
-                                            </Td>
-                                            <Td>
-                                                <Box>
-                                                    <Text fontWeigth="bold"> Davi Serrano </Text>
-                                                    <Text fontSize="sm" color="gray.300"> daviscardoso2901@gmail.com </Text>
-                                                </Box>
-                                            </Td>
-                                            { isWideVersion && <Td>12 de Fevereiro, 2022</Td>}
-                                        </Tr>
+                                        {data.users.map( user => {
+                                        return (
+                                            <Tr key={user.id}>
+                                                <Td px="6">
+                                                    <Checkbox  colorScheme="pink" > </Checkbox>
+                                                </Td>
+                                                <Td>
+                                                    <Box>
+                                                        <Text fontWeigth="bold"> {user.name} </Text>
+                                                        <Text fontSize="sm" color="gray.300"> {user.email} </Text>
+                                                    </Box>
+                                                </Td>
+                                                { isWideVersion && <Td>{user.createdAt}</Td>}
+                                            </Tr>
+                                        )
+                                        })} 
                                     </Tbody>
                                 </Table>
 
                                 <Pagination />
                             </>
-
-                        )} 
+                            )}
 
                 </Box>
             </Flex>
